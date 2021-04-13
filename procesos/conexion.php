@@ -3,4 +3,5 @@
     $host = "localhost";
     $user = "";
     $password = "";
+    $bd = "";
 ?>
