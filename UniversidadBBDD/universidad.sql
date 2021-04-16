@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2021 a las 07:44:45
+-- Tiempo de generación: 16-04-2021 a las 08:53:49
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.1
 
@@ -192,10 +192,34 @@ ALTER TABLE `rol`
 --
 
 --
+-- Filtros para la tabla `cursos`
+--
+ALTER TABLE `cursos`
+  ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`id`) REFERENCES `docente` (`id`);
+
+--
 -- Filtros para la tabla `docente`
 --
 ALTER TABLE `docente`
   ADD CONSTRAINT `docente_ibfk_1` FOREIGN KEY (`id`) REFERENCES `rol` (`id`);
+
+--
+-- Filtros para la tabla `facultad`
+--
+ALTER TABLE `facultad`
+  ADD CONSTRAINT `facultad_ibfk_1` FOREIGN KEY (`id`) REFERENCES `carreras` (`id`);
+
+--
+-- Filtros para la tabla `periodo`
+--
+ALTER TABLE `periodo`
+  ADD CONSTRAINT `periodo_ibfk_1` FOREIGN KEY (`id`) REFERENCES `cursos` (`id`);
+
+--
+-- Filtros para la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD CONSTRAINT `rol_ibfk_1` FOREIGN KEY (`id`) REFERENCES `docente` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
