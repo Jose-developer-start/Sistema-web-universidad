@@ -2,10 +2,17 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Servidor: localhost
 -- Tiempo de generación: 16-04-2021 a las 22:44:51
 -- Versión del servidor: 10.3.27-MariaDB-0+deb10u1
 -- Versión de PHP: 7.3.27-1~deb10u1
+=======
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-04-2021 a las 08:53:49
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.1
+>>>>>>> 54321e9022077762ffdf50cd89d24eabbf498b68
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -247,6 +254,7 @@ ALTER TABLE `rol`
 --
 
 --
+<<<<<<< HEAD
 -- Filtros para la tabla `carreras`
 --
 ALTER TABLE `carreras`
@@ -259,11 +267,18 @@ ALTER TABLE `cursos`
   ADD CONSTRAINT `fk_cursos_carreras` FOREIGN KEY (`id_carrera`) REFERENCES `carreras` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_cursos_docente` FOREIGN KEY (`id_docente`) REFERENCES `docente` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_cursos_periodo` FOREIGN KEY (`id_periodo`) REFERENCES `periodo` (`id`) ON UPDATE CASCADE;
+=======
+-- Filtros para la tabla `cursos`
+--
+ALTER TABLE `cursos`
+  ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`id`) REFERENCES `docente` (`id`);
+>>>>>>> 54321e9022077762ffdf50cd89d24eabbf498b68
 
 --
 -- Filtros para la tabla `docente`
 --
 ALTER TABLE `docente`
+<<<<<<< HEAD
   ADD CONSTRAINT `fk_docente_rol` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id`) ON UPDATE CASCADE;
 
 --
@@ -279,6 +294,27 @@ ALTER TABLE `estudiante`
 ALTER TABLE `matricula`
   ADD CONSTRAINT `fk_matricula_curso` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_matricula_estudiante` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`carnet`) ON UPDATE CASCADE;
+=======
+  ADD CONSTRAINT `docente_ibfk_1` FOREIGN KEY (`id`) REFERENCES `rol` (`id`);
+
+--
+-- Filtros para la tabla `facultad`
+--
+ALTER TABLE `facultad`
+  ADD CONSTRAINT `facultad_ibfk_1` FOREIGN KEY (`id`) REFERENCES `carreras` (`id`);
+
+--
+-- Filtros para la tabla `periodo`
+--
+ALTER TABLE `periodo`
+  ADD CONSTRAINT `periodo_ibfk_1` FOREIGN KEY (`id`) REFERENCES `cursos` (`id`);
+
+--
+-- Filtros para la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD CONSTRAINT `rol_ibfk_1` FOREIGN KEY (`id`) REFERENCES `docente` (`id`);
+>>>>>>> 54321e9022077762ffdf50cd89d24eabbf498b68
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
