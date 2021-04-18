@@ -2,17 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
-<<<<<<< HEAD
 -- Servidor: localhost
--- Tiempo de generación: 16-04-2021 a las 22:44:51
+-- Tiempo de generación: 17-04-2021 a las 23:45:04
 -- Versión del servidor: 10.3.27-MariaDB-0+deb10u1
 -- Versión de PHP: 7.3.27-1~deb10u1
-=======
--- Servidor: 127.0.0.1
--- Tiempo de generación: 16-04-2021 a las 08:53:49
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.1
->>>>>>> 54321e9022077762ffdf50cd89d24eabbf498b68
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,11 +29,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `carreras` (
   `id` int(11) NOT NULL,
-  `duracion` date NOT NULL,
+  `duracion` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `pensum` varchar(56) NOT NULL,
   `id_facultad` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `carreras`
+--
+
+INSERT INTO `carreras` (`id`, `duracion`, `nombre`, `pensum`, `id_facultad`) VALUES
+(1, 5, 'Licenciatura en ciencias de la computacion', '2021-2025', 1),
+(2, 3, 'Tecnico en desarrollo de aplicaciones informaticas', '2021-2025', 1);
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,7 @@ CREATE TABLE `docente` (
   `nombres` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `clave` varchar(50) NOT NULL,
+  `clave` varchar(100) NOT NULL,
   `foto` text NOT NULL,
   `estado` int(50) NOT NULL,
   `id_rol` int(30) NOT NULL
@@ -87,13 +88,20 @@ CREATE TABLE `estudiante` (
   `nombres` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `clave` varchar(50) NOT NULL,
+  `clave` varchar(100) NOT NULL,
   `genero` char(50) NOT NULL,
   `direccion` text NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `id_carrera` int(30) NOT NULL,
   `id_rol` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `estudiante`
+--
+
+INSERT INTO `estudiante` (`carnet`, `nombres`, `apellidos`, `email`, `clave`, `genero`, `direccion`, `fecha_nacimiento`, `id_carrera`, `id_rol`) VALUES
+('DP12785', 'Jose Miguel', 'Deodanes Perez', 'josedeodanes98@gmail.com', '$2y$10$bNFw3ow7fNcdjt3EhbyOmesWvXAR/WlOCwyrH4J8iQbVo87qUetym', 'M', 'San Salvador', '2000-06-12', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -105,6 +113,14 @@ CREATE TABLE `facultad` (
   `id` int(11) NOT NULL,
   `nombre` varchar(102) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `facultad`
+--
+
+INSERT INTO `facultad` (`id`, `nombre`) VALUES
+(1, 'Facultad de ciencias del hombre y la naturaleza'),
+(2, 'Facultad de ingenerias');
 
 -- --------------------------------------------------------
 
@@ -141,6 +157,14 @@ CREATE TABLE `rol` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id`, `nombre`) VALUES
+(1, 'Estudiante'),
+(2, 'Docente');
 
 --
 -- Índices para tablas volcadas
@@ -211,7 +235,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `carreras`
 --
 ALTER TABLE `carreras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cursos`
@@ -229,7 +253,7 @@ ALTER TABLE `docente`
 -- AUTO_INCREMENT de la tabla `facultad`
 --
 ALTER TABLE `facultad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `matricula`
@@ -247,14 +271,13 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
-<<<<<<< HEAD
 -- Filtros para la tabla `carreras`
 --
 ALTER TABLE `carreras`
@@ -267,18 +290,11 @@ ALTER TABLE `cursos`
   ADD CONSTRAINT `fk_cursos_carreras` FOREIGN KEY (`id_carrera`) REFERENCES `carreras` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_cursos_docente` FOREIGN KEY (`id_docente`) REFERENCES `docente` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_cursos_periodo` FOREIGN KEY (`id_periodo`) REFERENCES `periodo` (`id`) ON UPDATE CASCADE;
-=======
--- Filtros para la tabla `cursos`
---
-ALTER TABLE `cursos`
-  ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`id`) REFERENCES `docente` (`id`);
->>>>>>> 54321e9022077762ffdf50cd89d24eabbf498b68
 
 --
 -- Filtros para la tabla `docente`
 --
 ALTER TABLE `docente`
-<<<<<<< HEAD
   ADD CONSTRAINT `fk_docente_rol` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id`) ON UPDATE CASCADE;
 
 --
@@ -294,27 +310,6 @@ ALTER TABLE `estudiante`
 ALTER TABLE `matricula`
   ADD CONSTRAINT `fk_matricula_curso` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_matricula_estudiante` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`carnet`) ON UPDATE CASCADE;
-=======
-  ADD CONSTRAINT `docente_ibfk_1` FOREIGN KEY (`id`) REFERENCES `rol` (`id`);
-
---
--- Filtros para la tabla `facultad`
---
-ALTER TABLE `facultad`
-  ADD CONSTRAINT `facultad_ibfk_1` FOREIGN KEY (`id`) REFERENCES `carreras` (`id`);
-
---
--- Filtros para la tabla `periodo`
---
-ALTER TABLE `periodo`
-  ADD CONSTRAINT `periodo_ibfk_1` FOREIGN KEY (`id`) REFERENCES `cursos` (`id`);
-
---
--- Filtros para la tabla `rol`
---
-ALTER TABLE `rol`
-  ADD CONSTRAINT `rol_ibfk_1` FOREIGN KEY (`id`) REFERENCES `docente` (`id`);
->>>>>>> 54321e9022077762ffdf50cd89d24eabbf498b68
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
