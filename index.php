@@ -2,15 +2,16 @@
 <?php
     session_start();
     include_once "views/template/header.php";
+    //Incuimos la base de datos
+    include_once "./procesos/conexion.php";
+    //Incluimos a general crud
+    include_once "./procesos/general_crud.php";
 ?>
 
 <!--App principal-->
     <?php
-        if(isset($_POST['enviar'])){
-            $_SESSION['user'] = 'Jose';
-        }
         //Si no existe la sesion enviar a
-        if(!isset($_SESSION['user'])){
+        if(!isset($_SESSION['estudiante'])){
             header('Location:./views/login_user.php');
         }
         
