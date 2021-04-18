@@ -12,7 +12,7 @@
     <?php
         //Si no existe la sesion enviar a
         if(!isset($_SESSION['estudiante'])){
-            header('Location:./views/login_user.php');
+            header('Location:./views/');
         }
         
         $option = $_GET['option'];

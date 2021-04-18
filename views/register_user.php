@@ -130,7 +130,7 @@
                             <div class="col-md-8 col-md-offset-4">
                                 <button class="btn btn-primary" name="enviar" type="submit"><i
                                         class="fa fa-fw fa-lg fa-check-circle"></i>Registrar</button>&nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-secondary" href="views/login_user.php"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                                <a class="btn btn-secondary" href="views/"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                             </div>
                         </div>
                     </div>

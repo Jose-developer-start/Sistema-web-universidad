@@ -22,10 +22,10 @@
             ";
         
         }else{
-            header('Location:../views/login_user.php?error='.base64_encode('Clave erronea'));
+            header('Location:../views/?error='.base64_encode('Clave erronea'));
         }
         
     }else{
-        header('Location:../views/login_user.php?error='.base64_encode('Carnet invalido'));
+        header('Location:../views/?error='.base64_encode('Carnet invalido'));
     }
 ?>
