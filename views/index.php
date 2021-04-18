@@ -51,7 +51,7 @@ session_destroy();
       <form class="login-form" action="./procesos/login.php" method="POST">
         <h3 class="login-head mb-0"><i class="fa fa-lg fa-fw fa-user"></i>INGRESAR</h3>
         <div class="form-group">
-          <label class="control-label">CARNET</label>
+          <label class="control-label">CARNET o EMAIL</label>
           <input name="carnet" class="form-control" type="text" placeholder="Email" autofocus="">
         </div>
         <div class="form-group">
