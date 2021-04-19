@@ -1,7 +1,6 @@
 <?php
 session_start();
 session_destroy();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +59,9 @@ session_destroy();
         </div>
         <div class="form-group">
           <div class="utility">
-            <p class="semibold-text mb-0"><a href="#" data-toggle="flip">Restablecer clave ?</a></p>
+            <p class="semibold-text mb-0"><a href="#" data-toggle="flip">Restart clave?</a></p>
+            Estudiante:<input value="1" type="radio" name="rol" id="">
+            Docente:<input value="2" type="radio" name="rol">
           </div>
         </div>
         <div class="form-group btn-container">

@@ -2,19 +2,17 @@
 <?php
     session_start();
     include_once "views/template/header.php";
-    //Incuimos la base de datos
+    //Incluimos la conexion
     include_once "./procesos/conexion.php";
-    //Incluimos a general crud
-    include_once "./procesos/general_crud.php";
 ?>
 
 <!--App principal-->
     <?php
-        //Si no existe la sesion enviar a
-        if(!isset($_SESSION['estudiante'])){
+        //Si no existe la sesion enviar a login
+        if(!isset($_SESSION['estudiante']) && !isset($_SESSION['docente']) && !isset($_SESSION['admin'])){
             header('Location:./views/');
         }
-        
+
         $option = $_GET['option'];
 
     if($option == 'user'){

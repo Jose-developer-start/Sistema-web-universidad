@@ -8,24 +8,54 @@
     //Recibiendo datos de formulario de inscripcion
     $carnet = $_POST['carnet'];
     $clave = $_POST['clave'];
-    //Consulta sql para buscar el registro en la BD
-    $query = "SELECT * FROM estudiante WHERE carnet='$carnet'";
-
-    $result = get_data($query);
-    if($result['carnet'] === $carnet){
-        if(password_verify($clave,$result['clave'])){
-            //Creamos la sesion de estudiante
-            $_SESSION['estudiante'] = $result;
-            echo "
-                <script>location = '../index.php'</script>
-            
-            ";
-        
-        }else{
-            header('Location:../views/?error='.base64_encode('Clave erronea'));
-        }
-        
+    $rol = $_POST['rol'];
+    if($rol == 1){
+        $query = "SELECT * FROM estudiante WHERE carnet='$carnet'";
+    }elseif($rol == 2){
+        $query = "SELECT * FROM docente WHERE email='$carnet' AND id_rol=2";
     }else{
-        header('Location:../views/?error='.base64_encode('Carnet invalido'));
+        $query = "SELECT * FROM docente WHERE email='$carnet' AND id_rol=3";
+    }
+    //Consulta sql para buscar el registro en la BD
+    $result = get_data($query);
+
+    if($result['carnet'] === $carnet OR $result['email'] === $carnet){
+        if($rol == 1){
+            if(password_verify($clave,$result['clave'])){
+                //Creamos la sesion de estudiante
+                $_SESSION['estudiante'] = $result;
+                echo "
+                    <script>location = '../index.php'</script>
+                ";
+            
+            }else{
+                header('Location:../views/?error='.base64_encode('Clave erronea'));
+            }
+        }elseif($rol == 2){
+            if(password_verify($clave,$result['clave'])){
+                //Creamos la sesion de estudiante
+                $_SESSION['docente'] = $result;
+                echo "
+                    <script>location = '../index.php'</script>
+                ";
+            
+            }else{
+                header('Location:../views/?error='.base64_encode('Clave erronea'));
+            }
+        }else{
+            if(password_verify($clave,$result['clave'])){
+                //Creamos la sesion de estudiante
+                $_SESSION['admin'] = $result;
+                echo "
+                    <script>location = '../index.php'</script>
+                
+                ";
+            
+            }else{
+                header('Location:../views/?error='.base64_encode('Clave erronea'));
+            }
+        }
+    }else{
+        header('Location:../views/?error='.base64_encode('Carnet o email invalido'));
     }
 ?>

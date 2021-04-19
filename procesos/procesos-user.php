@@ -27,16 +27,17 @@
             echo "
                 <script>
                         alert('Registrado');
-                        location.href = '../views/login_user.php';
+                        location.href = '../views/';
                 </script>
             ";
         }else{
             echo "
                 <script>
                         alert('Error al registrar');
-                        location.href = '../views/register_user.php';
+                        location.href = '../views/';
                 </script>
             ";
         }
     }
+
 ?>

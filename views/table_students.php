@@ -1,9 +1,11 @@
-
+<?php
+  include_once "./procesos/mostrar-datos.php";
+?>
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
-          <p>A free and open source Bootstrap 4 admin template</p>
+          <h1><i class="fa fa-dashboard"></i> Gestionar estudiantes</h1>
+          <p>Admin</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -26,17 +28,19 @@
                   </tr>
                 </thead>
                 <tbody>
+                <?php $cont=0; foreach($result AS $data): ?>
                   <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Licencitura en ciencias de la computacion</td>
+                    <td><?php echo $cont +=1 ?></td>
+                    <td><?php echo $data['nombres'] ?></td>
+                    <td><?php echo $data['apellidos'] ?></td>
+                    <td><?php echo $data['email'] ?></td>
+                    <td><?php echo $data['nombre'] ?></td>
                     <td>
                         <a class="btn btn-info" href="#">Actualizar</a>
-                        <a class="btn btn-danger" href="#">Eliminar</a>
+                        <a class="btn btn-danger" href="./procesos/estudiante_proceso.php?id=<?php echo $data['carnet'] ?>">Eliminar</a>
                     </td>
                   </tr>
+                  <?php endforeach ?>
                 </tbody>
               </table>
             </div>
