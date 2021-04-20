@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="public/css/main.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
@@ -43,8 +44,12 @@
       <ul class="app-menu">
         <li><a class="app-menu__item active" href="index.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
         <li><a class="app-menu__item active" href="?option=user"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Estudiante</span></a></li>
-        <li><a class="app-menu__item active" href="?option=carrera"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Carreras</span></a></li>
+        <?php if($_SESSION['admin']):?>
+          <li><a class="app-menu__item active" href="?option=carrera"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Carreras</span></a></li>
+        <?php endif ?>
+        <?php if($_SESSION['docente']):?>
         <li><a class="app-menu__item active" href="?option=cursos"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Cursos</span></a></li>
+        <?php endif ?>
         <li><a class="app-menu__item active" href="?option=periodos"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Periodos</span></a></li>
         <li><a class="app-menu__item active" href="?option=docente"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Docentes</span></a></li>
         <li><a class="app-menu__item active" href="?option=matricula"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Matriculas</span></a></li>

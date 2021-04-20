@@ -1,4 +1,6 @@
-
+<?php
+  include_once "./procesos/mostrar-datos.php";
+?>
     <main class="app-content">
         <div class="app-title">
             <div>
@@ -18,22 +20,26 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Nombres</th>
+                        <th>Asignatura</th>
                         <th>Fecha de matricula</th>
                         <th>Docente</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <?php foreach($result_matricula AS $result): ?>
+                    <?php if($result['id_estudiante'] === $_SESSION['estudiante']['carnet']):?>
                       <tr>
-                        <td>1</td>
-                        <td>Contabilidad</td>
-                        <td>12-12-2021</td>
-                        <td>Manual Lopez</td>
+                        <td><?php echo $result['id'] ?></td>
+                        <td><?php echo $result['nombre'] ?></td>
+                        <td><?php echo $result['fecha'] ?></td>
+                        <td><?php echo $result['nombres'] ?></td>
                         <td>
-                            <a class="btn btn-danger" href="#">Eliminar</a>
+                            <a class="btn btn-danger" href="./procesos/curso-procesos.php?id_curso=<?php echo $result['id'] ?>">Eliminar</a>
                         </td>
                       </tr>
+                      <?php endif ?>
+                      <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div>

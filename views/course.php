@@ -1,4 +1,6 @@
-
+<?php
+  include_once "./procesos/mostrar-datos.php";
+?>
     <main class="app-content">
         <div class="app-title">
             <div>
@@ -15,65 +17,72 @@
                 <div class="tile">
                     <h3 class="tile-title">Agregar cursos</h3>
                     <div class="tile-body">
-                        <form>
+                        <form action="./procesos/curso-procesos.php" method="post">
                             <div class="form-group">
                                 <label class="control-label">Nombre</label>
-                                <input class="form-control" type="text" placeholder="Ingresar nombre">
+                                <input name="nombre_curso" class="form-control" type="text" placeholder="Ingresar nombre">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Descripción</label>
-                                <textarea class="form-control" rows="4" placeholder="Agregar descripción"></textarea>
+                                <textarea name="descripcion" class="form-control" rows="4" placeholder="Agregar descripción"></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Cupos</label>
-                                <input class="form-control" min="0" type="number">
+                                <input name="numero_cupos"  class="form-control" min="0" max="70" type="number">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Estado</label>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="estado">Activo
+                                        <input class="form-check-input" type="radio" value="1" name="estado">Activo
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="estado">Inactivo
+                                        <input class="form-check-input" type="radio" value="0" checked name="estado">Inactivo
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelect1">Seleccionar periodo</label>
-                                <select class="form-control" id="exampleSelect1">
-                                  <option>1</option>
-                                  <option>2</option>
+                                <select class="form-control" id="exampleSelect1" name="fecha">
+                                  <option value="" selected disabled>Seleccionar</option>
+                                  <?php foreach($result_perido AS $result): ?>
+                                  <option value="<?php echo $result['id'] ?>"><?php echo $result['fecha_inicio'].' a '.$result['fecha_finalizacion'] ?></option>
+                                  <?php endforeach; ?>
                                 </select>
                               </div>
                               <div class="form-group">
                                 <label for="exampleSelect1">Seleccionar carrera</label>
-                                <select class="form-control" id="exampleSelect1">
-                                  <option>1</option>
-                                  <option>2</option>
+                                <select class="form-control" id="exampleSelect1" name="carrera">
+                                  <option value="" selected disabled>Seleccionar</option>
+                                  <?php foreach($result_carrera AS $result): ?>
+                                  <option value="<?php echo $result['id'] ?>"><?php echo $result['nombre']?></option>
+                                  <?php endforeach; ?>
                                 </select>
                               </div>
                               <div class="form-group">
                                 <label for="exampleSelect1">Seleccionar docente</label>
-                                <select class="form-control" id="exampleSelect1">
-                                  <option>1</option>
-                                  <option>2</option>
+                                <select class="form-control" id="exampleSelect1" name="docente">
+                                  <option value="" selected disabled>Seleccionar</option>
+                                  <?php foreach($result_docente AS $result): ?>
+                                  <?php if($result['id'] === $_SESSION['docente']['id']):?>
+                                  <option value="<?php echo $result['id'] ?>"><?php echo $result['nombres'].' '.$result['apellidos']?></option>
+                                  <?php endif; ?>
+                                  <?php endforeach; ?>
                                 </select>
                               </div>
                             <div class="form-group">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox">I accept the terms and
+                                        <input class="form-check-input" type="checkbox" required>I accept the terms and
                                         conditions
                                     </label>
                                 </div>
                             </div>
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="button"><i
-                                        class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;<a
-                                    class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                                <input class="btn btn-primary" type="submit" name="agregar-curse" value="Agregar">&nbsp;&nbsp;&nbsp;<a
+                                    class="btn btn-secondary" href="?option=cursos"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                             </div>
                         </form>
                     </div>
@@ -86,9 +95,9 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Correro</th>
+                        <th>Curso</th>
+                        <th>Cupos</th>
+                        <th>Estado</th>
                         <th>Carrera</th>
                         <th>Acciones</th>
                       </tr>

@@ -1,4 +1,6 @@
-
+<?php
+  include_once "./procesos/mostrar-datos.php";
+?>
     <main class="app-content">
         <div class="app-title">
             <div>
@@ -10,37 +12,37 @@
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
             </ul>
         </div>
+        <?php if(isset($_GET['error'])): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Estado:</strong> <?php echo base64_decode($_GET['error']) ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <?php endif ?>
         <div class="row">
+        <?php foreach($result_cursos AS $result): ?>
+        <?php if($result['estado'] == 1): ?>
             <div class="col-md-6">
                 <div class="tile">
-                    <h3 class="tile-title">Contabilidad</h3>
+                    <h3 class="tile-title"><?php echo $result['nombre'] ?></h3>
                     <b>Descripción</b>
-                    <div class="tile-body">Hey there, I am a very simple card. I am good at containing small bits of
-                        information. I am quite convenient because I require little markup to use effectively.</div>
+                    <div class="tile-body"><?php echo $result['descripcion'] ?></div>
                         <div>
-                            <b>Inicia: </b>
+                            <b>Inicia: <?php echo $result['fecha_inicio'] ?></b>
                         </div>
                         <div>
-                            <b>Finaliza: </b>
+                            <b>Finaliza: <?php echo $result['fecha_finalizacion'] ?></b>
                         </div>
-                    <div class="tile-footer"><a class="btn btn-primary" href="views/matricula_user.html">Inscribirse</a></div>
+                    <form action="./procesos/curso-procesos.php" method="POST">
+                        <input name="id_curso" type="hidden" value="<?php echo $result['id'] ?>">
+                        <input name="id_estudiante" type="hidden" value="<?php echo $_SESSION['estudiante']['carnet'] ?>">
+                        <div class="tile-footer"><button type="submit" name="add_matricula" class="btn btn-primary">Inscribirse</button></div>
+                    </form>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="tile">
-                    <h3 class="tile-title">Contabilidad</h3>
-                    <b>Descripción</b>
-                    <div class="tile-body">Hey there, I am a very simple card. I am good at containing small bits of
-                        information. I am quite convenient because I require little markup to use effectively.</div>
-                        <div>
-                            <b>Inicia: </b>
-                        </div>
-                        <div>
-                            <b>Finaliza: </b>
-                        </div>
-                    <div class="tile-footer"><a class="btn btn-primary" href="views/matricula_user.html">Inscribirse</a></div>
-                </div>
-            </div>
+            <?php endif ?>
+            <?php endforeach; ?>
         </div>
         <div>
             <ul class="pagination">
