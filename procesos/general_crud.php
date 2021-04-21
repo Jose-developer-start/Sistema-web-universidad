@@ -19,10 +19,15 @@
     }
 
     //Sirve para traer los datos con la clausula where
-    function get_data($query){
+    function get_data($query, $modificador=''){
         $con = get_conexion();
         $result = $con->prepare($query);
         $result->execute();
-        return $result->fetch(PDO::FETCH_ASSOC); 
+        if($modificador == ''){
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            return $result->fetch(PDO::FETCH_ASSOC);
+        }
+         
     }
 ?>

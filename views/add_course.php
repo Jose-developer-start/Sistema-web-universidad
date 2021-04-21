@@ -1,5 +1,6 @@
 <?php
-  include_once "./procesos/mostrar-datos.php";
+  include_once "./procesos/paginacion_estudiante.php";
+  
 ?>
     <main class="app-content">
         <div class="app-title">
@@ -21,8 +22,8 @@
         </div>
         <?php endif ?>
         <div class="row">
-        <?php foreach($result_cursos AS $result): ?>
-        <?php if($result['estado'] == 1): ?>
+        <?php foreach($data AS $result): ?>
+        
             <div class="col-md-6">
                 <div class="tile">
                     <h3 class="tile-title"><?php echo $result['nombre'] ?></h3>
@@ -41,18 +42,17 @@
                     </form>
                 </div>
             </div>
-            <?php endif ?>
+            
             <?php endforeach; ?>
         </div>
         <div>
             <ul class="pagination">
-              <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item"><a class="page-link" href="#">»</a></li>
+              <li class="page-item <?php echo $_GET['pag'] <= 1 ? 'disabled': '' ?>"><a class="page-link" href="?option=inscribirse&pag=<?php echo $_GET['pag'] - 1 ?>">«</a></li>
+              <?php for($i=0; $i < $paginas; $i++):?>
+              <li class="page-item <?php echo $_GET['pag'] == $i + 1 ? 'active': '' ?>"><a class="page-link" href="?option=inscribirse&pag=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+              <?php endfor; ?>
+              <li class="page-item <?php echo $_GET['pag'] >= $paginas ? 'disabled': '' ?>"><a class="page-link" href="?option=inscribirse&pag=<?php echo $_GET['pag'] + 1 ?>">»</a></li>
+              
             </ul>
           </div>
     </main>

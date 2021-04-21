@@ -15,7 +15,7 @@
             <div class="tile">
               <div class="d-flex justify-content-between">
                 <h3 class="tile-title">Registros de docentes</h3>
-                <a class="btn btn-primary mb-2" href="views/register_teacher.html">Registrar</a>
+                <a class="btn btn-primary mb-2" href="views/register_teacher.php">Registrar</a>
               </div>
               <table class="table table-hover table-responsive-sm">
                 <thead>
@@ -25,6 +25,7 @@
                     <th>Apellidos</th>
                     <th>Correo</th>
                     <th>Rol</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -35,6 +36,7 @@
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>Profesor</td>
+                    <td>Activo</td>
                     <td>
                         <a class="btn btn-info" href="#">Actualizar</a>
                         <a class="btn btn-danger" href="#">Eliminar</a>

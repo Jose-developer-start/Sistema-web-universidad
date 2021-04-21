@@ -10,7 +10,7 @@
     $result_perido = select_data($query);
 
     //Consulta para mostrar los cursos en vista add_curse.php
-    $query = "SELECT cursos.id,cursos.nombre,cursos.descripcion,cursos.estado,periodo.fecha_inicio,periodo.fecha_finalizacion FROM cursos INNER JOIN periodo ON cursos.id_periodo=periodo.id ORDER BY cursos.id DESC";
+    $query = "SELECT cursos.id,cursos.nombre,cursos.descripcion,cursos.estado,periodo.fecha_inicio,periodo.fecha_finalizacion FROM cursos INNER JOIN periodo ON cursos.id_periodo=periodo.id WHERE estado=1 ORDER BY cursos.id DESC";
     $result_cursos = select_data($query);
 
     //Consulta para mostrar los datos en la vista matricula_user.php

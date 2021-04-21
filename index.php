@@ -4,7 +4,6 @@
     include_once "views/template/header.php";
     //Incluimos la conexion
     include_once "./procesos/conexion.php";
-    echo "<script>alertify.alert('Ready!');</script>";
 ?>
 
 <!--App principal-->

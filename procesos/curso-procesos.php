@@ -25,17 +25,17 @@
             $result = I_U_D_data($query);
 
             if($result){
-                header('Location:../?option=inscribirse&error='.base64_encode('Inscrito'));
+                header('Location:../?option=inscribirse&pag=1&error='.base64_encode('Inscrito'));
                 return false;
             }
         }else{
-            header('Location:../?option=inscribirse&error='.base64_encode('Ya estas inscrito'));
+            header('Location:../?option=inscribirse&pag=1&error='.base64_encode('Ya estas inscrito'));
             return false;
         }
         
     }
-    //Agregar un curso a la base de datos, desde la vista de curse.php
 
+    //Agregar un curso a la base de datos, desde la vista de curse.php
     if(isset($_POST['agregar-curse'])){
         echo $nombre_curso = $_POST['nombre_curso'];
         echo $descripcion = $_POST['descripcion'];
@@ -74,7 +74,7 @@
         $query = "DELETE FROM matricula WHERE id='$id_curso'";
         $result = I_U_D_data($query);
         if($result){
-            header('Location:../?option=matricula');
+            header('Location:../?option=matricula&error='.base64_encode('Eliminado'));
         }
     }
     

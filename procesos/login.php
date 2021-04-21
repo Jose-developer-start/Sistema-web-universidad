@@ -17,7 +17,7 @@
         $query = "SELECT * FROM docente WHERE email='$carnet' AND id_rol=3";
     }
     //Consulta sql para buscar el registro en la BD
-    $result = get_data($query);
+    $result = get_data($query,'where');
 
     if($result['carnet'] === $carnet OR $result['email'] === $carnet){
         if($rol == 1){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-04-2021 a las 23:45:04
+-- Tiempo de generación: 20-04-2021 a las 23:32:56
 -- Versión del servidor: 10.3.27-MariaDB-0+deb10u1
 -- Versión de PHP: 7.3.27-1~deb10u1
 
@@ -40,7 +40,7 @@ CREATE TABLE `carreras` (
 --
 
 INSERT INTO `carreras` (`id`, `duracion`, `nombre`, `pensum`, `id_facultad`) VALUES
-(1, 5, 'Licenciatura en ciencias de la computacion', '2021-2025', 1),
+(1, 5, 'Licenciatura en ciencias de la computacion1', '2021-2025', 1),
 (2, 3, 'Tecnico en desarrollo de aplicaciones informaticas', '2021-2025', 1);
 
 -- --------------------------------------------------------
@@ -60,6 +60,15 @@ CREATE TABLE `cursos` (
   `id_docente` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `nombre`, `descripcion`, `cupos`, `estado`, `id_periodo`, `id_carrera`, `id_docente`) VALUES
+(1, 'Algoritmo 1', 'Asignatura de algoritmo 1, donde se estudiaran las caracteristicas de un algoritmo', 30, 1, 1, 1, 1),
+(2, 'Base de datos 1', 'fgfdgfdgfdg', 5, 1, 2, 2, 1),
+(3, 'Tecnicas de ortografia y redacción', 'Aprenderas las reglas basicas para redactar', 56, 1, 3, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -76,6 +85,14 @@ CREATE TABLE `docente` (
   `estado` int(50) NOT NULL,
   `id_rol` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `docente`
+--
+
+INSERT INTO `docente` (`id`, `nombres`, `apellidos`, `email`, `clave`, `foto`, `estado`, `id_rol`) VALUES
+(1, 'Carlos', 'Mendoza', 'carlosmendoza99@gmail.com', '$2y$10$bNFw3ow7fNcdjt3EhbyOmesWvXAR/WlOCwyrH4J8iQbVo87qUetym', 'docente1.png', 1, 2),
+(2, 'Noe', 'Lopez', 'noe_admin@uni.com', '$2y$10$bNFw3ow7fNcdjt3EhbyOmesWvXAR/WlOCwyrH4J8iQbVo87qUetym', 'noe.png', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -101,6 +118,7 @@ CREATE TABLE `estudiante` (
 --
 
 INSERT INTO `estudiante` (`carnet`, `nombres`, `apellidos`, `email`, `clave`, `genero`, `direccion`, `fecha_nacimiento`, `id_carrera`, `id_rol`) VALUES
+('AJ17941', 'Anderson', 'Argeuta Jovel', 'servidorvps99@gmail.com', '$2y$10$cadHvhPVfO5ZcWzppKIMyOim9InX/Js4AmITcWGCA1wSAMZMAY5uS', 'M', 'La paz, Zacatecoluca', '2000-06-20', 2, 1),
 ('DP12785', 'Jose Miguel', 'Deodanes Perez', 'josedeodanes98@gmail.com', '$2y$10$bNFw3ow7fNcdjt3EhbyOmesWvXAR/WlOCwyrH4J8iQbVo87qUetym', 'M', 'San Salvador', '2000-06-12', 1, 1);
 
 -- --------------------------------------------------------
@@ -130,10 +148,18 @@ INSERT INTO `facultad` (`id`, `nombre`) VALUES
 
 CREATE TABLE `matricula` (
   `id` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_estudiante` varchar(50) DEFAULT NULL,
   `id_curso` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `matricula`
+--
+
+INSERT INTO `matricula` (`id`, `fecha`, `id_estudiante`, `id_curso`) VALUES
+(2, '2021-04-20 01:39:27', 'AJ17941', 1),
+(23, '2021-04-21 04:04:21', 'DP12785', 3);
 
 -- --------------------------------------------------------
 
@@ -146,6 +172,15 @@ CREATE TABLE `periodo` (
   `fecha_inicio` date NOT NULL,
   `fecha_finalizacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `periodo`
+--
+
+INSERT INTO `periodo` (`id`, `fecha_inicio`, `fecha_finalizacion`) VALUES
+(1, '2021-04-20', '2021-04-30'),
+(2, '2020-11-19', '2021-04-19'),
+(3, '2021-04-01', '2021-04-19');
 
 -- --------------------------------------------------------
 
@@ -164,7 +199,8 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`id`, `nombre`) VALUES
 (1, 'Estudiante'),
-(2, 'Docente');
+(2, 'Docente'),
+(3, 'Administrador');
 
 --
 -- Índices para tablas volcadas
@@ -241,13 +277,13 @@ ALTER TABLE `carreras`
 -- AUTO_INCREMENT de la tabla `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `facultad`
@@ -259,19 +295,19 @@ ALTER TABLE `facultad`
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `periodo`
 --
 ALTER TABLE `periodo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
