@@ -43,16 +43,16 @@
       </div>
       <ul class="app-menu">
         <li><a class="app-menu__item active" href="index.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
-        <?php if($_SESSION['admin'] || $_SESSION['docente']):?>
+        <?php if(isset($_SESSION['admin']) || isset($_SESSION['docente'])):?>
         <li><a class="app-menu__item active" href="?option=user"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Estudiante</span></a></li>
         <?php endif ?>
-        <?php if($_SESSION['admin']):?>
+        <?php if(isset($_SESSION['admin'])):?>
           <li><a class="app-menu__item active" href="?option=carrera"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Carreras</span></a></li>
         <?php endif ?>
-        <?php if($_SESSION['docente']):?>
+        <?php if(isset($_SESSION['docente'])):?>
         <li><a class="app-menu__item active" href="?option=cursos"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Cursos</span></a></li>
         <?php endif ?>
-        <?php if($_SESSION['admin']):?>
+        <?php if(isset($_SESSION['admin'])):?>
         <li><a class="app-menu__item active" href="?option=periodos"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Periodos</span></a></li>
         <li><a class="app-menu__item active" href="?option=docente"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Docentes</span></a></li>
         <?php endif ?>
