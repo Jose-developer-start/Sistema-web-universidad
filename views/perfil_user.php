@@ -4,7 +4,13 @@
         <div class="col-md-12">
           <div class="profile">
             <div class="info"><img class="user-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg">
-              <h4>John Doe</h4>
+              <h4>
+                <?php if(isset($_SESSION['estudiante'])){
+                    //Mostrar el nombre de perfil
+                    echo $_SESSION['estudiante']['nombres']." ".$_SESSION['estudiante']['nombres'];
+                }
+                ?>
+              </h4>
               <p>FrontEnd Developer</p>
             </div>
             <div class="cover-image"></div>

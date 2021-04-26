@@ -24,7 +24,7 @@
                     <th>Apellidos</th>
                     <th>Correro</th>
                     <th>Carrera</th>
-                    <th>Acciones</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
@@ -35,10 +35,6 @@
                     <td><?php echo $data['apellidos'] ?></td>
                     <td><?php echo $data['email'] ?></td>
                     <td><?php echo $data['nombre'] ?></td>
-                    <td>
-                        <a class="btn btn-info" href="#">Actualizar</a>
-                        <a class="btn btn-danger" href="./procesos/estudiante_proceso.php?id=<?php echo $data['carnet'] ?>">Eliminar</a>
-                    </td>
                   </tr>
                   <?php endforeach ?>
                 </tbody>

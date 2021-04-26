@@ -13,7 +13,7 @@
             header('Location:./views/');
         }
 
-        $option = $_GET['option'];
+        $option = isset($_GET['option']) ? $_GET['option'] : '';
 
     if($option == 'user'){
         include_once "views/table_students.php";
@@ -31,6 +31,10 @@
         include_once "views/add_course.php";
     }elseif($option == 'perfil'){
         include_once "views/perfil_user.php";
+    }elseif($option == 'edit_docente'){
+        //Edit docente
+        include_once "./views/edit_docente.php";
+
     }else{
         include_once "views/dashboard.php";
     }

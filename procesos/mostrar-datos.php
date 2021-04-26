@@ -24,4 +24,8 @@
     ////Consultas para mostrar en los select los docentes => En curse.php
     $query = "SELECT * FROM docente ORDER BY id DESC";
     $result_docente = select_data($query);
+
+    //Consulta para mostrar los datos en la tabla docentes->administrador
+    $query = "SELECT docente.id,docente.nombres,docente.apellidos,docente.email,rol.nombre,docente.estado,docente.foto,rol.id as rol FROM `docente` INNER JOIN rol ON docente.id_rol=rol.id";
+    $tabla_docente = select_data($query);
 ?>

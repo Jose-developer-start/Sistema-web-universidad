@@ -39,17 +39,17 @@
         <div class="tile">
             <h3 class="tile-title">Registrate en nuestra plataforma</h3>
             <div class="tile-body">
-                <form class="form-horizontal" action="views/table_teacher.html">
+                <form class="form-horizontal" action="./procesos/docente_procesos.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="control-label col-md-3">Nombres*</label>
                         <div class="col-md-9">
-                            <input name="nombres" class="form-control" type="email" placeholder="Ingresar nombres">
+                            <input name="nombres" class="form-control" type="text" placeholder="Ingresar nombres">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-md-3">Apellidos*</label>
                         <div class="col-md-9">
-                            <input name="apellidos" class="form-control" type="email" placeholder="Ingresar Apellidos">
+                            <input name="apellidos" class="form-control" type="text" placeholder="Ingresar Apellidos">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -61,7 +61,7 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3">Clave*</label>
                         <div class="col-md-9">
-                            <input name="clave" class="form-control" type="email" placeholder="Ingresar clave">
+                            <input name="clave" class="form-control" type="password" placeholder="Ingresar clave">
                         </div>
                     </div>
                 
@@ -74,9 +74,9 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3" for="exampleSelect1">Rol</label>
                         <div class="col-md-9">
-                            <select class="form-control" id="exampleSelect1" name="carrera">
+                            <select class="form-control" id="exampleSelect1" name="rol">
                                 <option value=""></option>
-                                <option>Docente</option>
+                                <option value="2">Docente</option>
                             </select>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                     <div class="tile-footer">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-4">
-                                <button class="btn btn-primary" type="submit"><i
+                                <button class="btn btn-primary" type="submit" name="guardar_data"><i
                                         class="fa fa-fw fa-lg fa-check-circle"></i>Registrar</button>&nbsp;&nbsp;&nbsp;
                                 <a class="btn btn-secondary" href="views/"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                             </div>

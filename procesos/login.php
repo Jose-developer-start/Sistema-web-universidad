@@ -8,7 +8,7 @@
     //Recibiendo datos de formulario de inscripcion
     $carnet = $_POST['carnet'];
     $clave = $_POST['clave'];
-    $rol = $_POST['rol'];
+    $rol = isset($_POST['rol']) ? $_POST['rol'] :  '';
     if($rol == 1){
         $query = "SELECT * FROM estudiante WHERE carnet='$carnet'";
     }elseif($rol == 2){
@@ -32,27 +32,35 @@
                 header('Location:../views/?error='.base64_encode('Clave erronea'));
             }
         }elseif($rol == 2){
-            if(password_verify($clave,$result['clave'])){
-                //Creamos la sesion de estudiante
-                $_SESSION['docente'] = $result;
-                echo "
-                    <script>location = '../index.php'</script>
-                ";
-            
+            if($result['estado'] == 1){
+                if(password_verify($clave,$result['clave'])){
+                    //Creamos la sesion de estudiante
+                    $_SESSION['docente'] = $result;
+                    echo "
+                        <script>location = '../index.php'</script>
+                    ";
+                
+                }else{
+                    header('Location:../views/?error='.base64_encode('Clave erronea'));
+                }
             }else{
-                header('Location:../views/?error='.base64_encode('Clave erronea'));
+                header('Location:../views/?error='.base64_encode('Cuenta desactivada'));
             }
         }else{
-            if(password_verify($clave,$result['clave'])){
-                //Creamos la sesion de estudiante
-                $_SESSION['admin'] = $result;
-                echo "
-                    <script>location = '../index.php'</script>
+            if($result['estado'] == 1){
+                if(password_verify($clave,$result['clave'])){
+                    //Creamos la sesion de estudiante
+                    $_SESSION['admin'] = $result;
+                    echo "
+                        <script>location = '../index.php'</script>
+                    
+                    ";
                 
-                ";
-            
+                }else{
+                    header('Location:../views/?error='.base64_encode('Clave erronea'));
+                }
             }else{
-                header('Location:../views/?error='.base64_encode('Clave erronea'));
+                header('Location:../views/?error='.base64_encode('Cuenta desactivada'));
             }
         }
     }else{

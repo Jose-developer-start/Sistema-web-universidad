@@ -1,4 +1,4 @@
-
+<?php include_once "./procesos/mostrar-datos.php";?>
     <main class="app-content">
       <div class="app-title">
         <div>
@@ -30,18 +30,20 @@
                   </tr>
                 </thead>
                 <tbody>
+                <?php $cont = 0; foreach($tabla_docente AS $result): ?>
                   <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Profesor</td>
-                    <td>Activo</td>
+                    <td><?php echo $cont += 1 ?></td>
+                    <td><?php echo $result['nombres'] ?></td>
+                    <td><?php echo $result['apellidos'] ?></td>
+                    <td><?php echo $result['email'] ?></td>
+                    <td><?php echo $result['nombre'] ?></td>
+                    <td><?php echo $result['estado'] == 1? 'Activo':'Desactivado' ?></td>
                     <td>
-                        <a class="btn btn-info" href="#">Actualizar</a>
-                        <a class="btn btn-danger" href="#">Eliminar</a>
+                        <a class="btn btn-info" href="?option=edit_docente&id=<?php echo $result['id'] ?>">Actualizar</a>
+                        <a class="btn btn-danger" href="./procesos/docente_procesos.php?delete=1&id=<?php echo $result['id'] ?>&foto=<?php echo $result['foto'] ?>">Eliminar</a>
                     </td>
                   </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
