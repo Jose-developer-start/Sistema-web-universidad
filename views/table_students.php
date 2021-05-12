@@ -14,7 +14,7 @@ include_once "./procesos/paginacion_matriculados.php";
   <div class="row">
     <div class="col-md-12">
       <div class="tile">
-        <h3 class="tile-title">Estudiantes</h3>
+      <h3 class="tile-title">Estudiantes</h3>
         <table class="table table-hover table-responsive-sm">
           <thead>
             <tr>
@@ -29,8 +29,18 @@ include_once "./procesos/paginacion_matriculados.php";
           <tbody>
             <?php $cont = 0;
             foreach ($result as $data) : ?>
-            <?php if(isset($_SESSION['docente'])):?>
-              <?php if ($_SESSION['docente']['id'] == $data['id_docente']) : ?>
+              <?php if (isset($_SESSION['docente'])) : ?>
+                <?php if ($_SESSION['docente']['id'] == $data['id_docente']) : ?>
+                  <tr>
+                    <td><?php echo $data['carnet'] ?></td>
+                    <td><?php echo $data['nombres'] ?></td>
+                    <td><?php echo $data['apellidos'] ?></td>
+                    <td><?php echo $data['email'] ?></td>
+                    <td><?php echo $data['carreras'] ?></td>
+                    <td><?php echo $data['cursos'] ?></td>
+                  </tr>
+                <?php endif; ?>
+              <?php else : ?>
                 <tr>
                   <td><?php echo $data['carnet'] ?></td>
                   <td><?php echo $data['nombres'] ?></td>
@@ -40,16 +50,6 @@ include_once "./procesos/paginacion_matriculados.php";
                   <td><?php echo $data['cursos'] ?></td>
                 </tr>
               <?php endif; ?>
-            <?php else: ?>
-              <tr>
-                  <td><?php echo $data['carnet'] ?></td>
-                  <td><?php echo $data['nombres'] ?></td>
-                  <td><?php echo $data['apellidos'] ?></td>
-                  <td><?php echo $data['email'] ?></td>
-                  <td><?php echo $data['carreras'] ?></td>
-                  <td><?php echo $data['cursos'] ?></td>
-                </tr>
-            <?php endif; ?>
             <?php endforeach ?>
           </tbody>
         </table>

@@ -14,7 +14,7 @@
     $result_cursos = select_data($query);
 
     //Consulta para mostrar los datos en la vista matricula_user.php
-    $query = "SELECT matricula.id,matricula.id_estudiante,cursos.nombre,matricula.fecha,docente.nombres FROM matricula INNER JOIN cursos ON matricula.id_curso=cursos.id INNER JOIN docente ON cursos.id_docente=docente.id ORDER BY cursos.id DESC";
+    $query = "SELECT matricula.id,matricula.id_estudiante,cursos.nombre,DATE(matricula.fecha) as fecha,docente.nombres,docente.apellidos FROM matricula INNER JOIN cursos ON matricula.id_curso=cursos.id INNER JOIN docente ON cursos.id_docente=docente.id ORDER BY cursos.id DESC";
     $result_matricula = select_data($query);
 
     //Consultas para mostrar en los select las carreras => en curse.php

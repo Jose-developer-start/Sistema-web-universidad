@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 20-04-2021 a las 23:32:56
--- Versión del servidor: 10.3.27-MariaDB-0+deb10u1
--- Versión de PHP: 7.3.27-1~deb10u1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-05-2021 a las 20:27:34
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,8 @@ CREATE TABLE `carreras` (
 
 INSERT INTO `carreras` (`id`, `duracion`, `nombre`, `pensum`, `id_facultad`) VALUES
 (1, 5, 'Licenciatura en ciencias de la computacion1', '2021-2025', 1),
-(2, 3, 'Tecnico en desarrollo de aplicaciones informaticas', '2021-2025', 1);
+(2, 3, 'Tecnico en desarrollo de aplicaciones informaticas', '2021-2025', 1),
+(3, 3, 'Licenciatura en trabajo social', '2021-2026', 1);
 
 -- --------------------------------------------------------
 
@@ -66,8 +67,11 @@ CREATE TABLE `cursos` (
 
 INSERT INTO `cursos` (`id`, `nombre`, `descripcion`, `cupos`, `estado`, `id_periodo`, `id_carrera`, `id_docente`) VALUES
 (1, 'Algoritmo 1', 'Asignatura de algoritmo 1, donde se estudiaran las caracteristicas de un algoritmo', 30, 1, 1, 1, 1),
-(2, 'Base de datos 1', 'fgfdgfdgfdg', 5, 1, 2, 2, 1),
-(3, 'Tecnicas de ortografia y redacción', 'Aprenderas las reglas basicas para redactar', 56, 1, 3, 1, 1);
+(2, 'Base de datos 2', 'fgfdgfdgfdg', 20, 1, 2, 2, 12),
+(3, 'Tecnicas de ortografia y redacción', 'Aprenderas las reglas basicas para redactar', 56, 1, 3, 1, 13),
+(4, 'Redes 1', 'Asignatura donde se enseñaran las base de la redes informaticas', 50, 1, 3, 1, 13),
+(6, 'Técnicas de redaccion', 'Asignatura para aprender las bases de la escritura española', 30, 1, 1, 3, 12),
+(7, 'Metodos de investigacion', 'Asignatura para estudiar las distintas tecnicas de investigacion y los paradigma ', 50, 1, 3, 3, 12);
 
 -- --------------------------------------------------------
 
@@ -91,8 +95,9 @@ CREATE TABLE `docente` (
 --
 
 INSERT INTO `docente` (`id`, `nombres`, `apellidos`, `email`, `clave`, `foto`, `estado`, `id_rol`) VALUES
-(1, 'Carlos', 'Mendoza', 'carlosmendoza99@gmail.com', '$2y$10$bNFw3ow7fNcdjt3EhbyOmesWvXAR/WlOCwyrH4J8iQbVo87qUetym', 'docente1.png', 1, 2),
-(2, 'Noe', 'Lopez', 'noe_admin@uni.com', '$2y$10$bNFw3ow7fNcdjt3EhbyOmesWvXAR/WlOCwyrH4J8iQbVo87qUetym', 'noe.png', 1, 3);
+(1, 'Admin', 'Sistema', 'administrador_sistema@admin', '$2y$10$QUV5a9kaATTGpWxLaA175eO4ARlRE9GXBN7Z43EG/6fsQ8Dg3qgDa', 'docente1.png', 1, 3),
+(12, 'Alberto', 'Menjivar', 'josedeo@gma', '$2y$10$vLPaN.Md/mJAwNO6wuk/Sub1N0f5/njNs0qfBmTpeff614w3jX4d2', '127.0.0.1_5500_index.html.png', 1, 3),
+(13, 'Alberto', 'Menjivar', 'alberto.profe@edu.sv', '$2y$10$93U/g8nh5dsL17MNEw0H8uAzK1xHhnuR0Gd1PXBaGuZPomyd7W/GK', 'M_gaseosacocacola3lt5185.png', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -119,7 +124,10 @@ CREATE TABLE `estudiante` (
 
 INSERT INTO `estudiante` (`carnet`, `nombres`, `apellidos`, `email`, `clave`, `genero`, `direccion`, `fecha_nacimiento`, `id_carrera`, `id_rol`) VALUES
 ('AJ17941', 'Anderson', 'Argeuta Jovel', 'servidorvps99@gmail.com', '$2y$10$cadHvhPVfO5ZcWzppKIMyOim9InX/Js4AmITcWGCA1wSAMZMAY5uS', 'M', 'La paz, Zacatecoluca', '2000-06-20', 2, 1),
-('DP12785', 'Jose Miguel', 'Deodanes Perez', 'josedeodanes98@gmail.com', '$2y$10$bNFw3ow7fNcdjt3EhbyOmesWvXAR/WlOCwyrH4J8iQbVo87qUetym', 'M', 'San Salvador', '2000-06-12', 1, 1);
+('DP12785', 'Jose Miguel', 'Deodanes', 'josedeodanes98@gmail.com', '$2y$10$QUV5a9kaATTGpWxLaA175eO4ARlRE9GXBN7Z43EG/6fsQ8Dg3qgDa', 'M', 'San Salvador, panchimalco', '2000-06-12', 1, 1),
+('L74367', 'Alexis', 'Lozada', 'josedeo@gma', '$2y$10$vLPaN.Md/mJAwNO6wuk/Sub1N0f5/njNs0qfBmTpeff614w3jX4d2', 'M', 'dfgfdgdfg', '2021-05-01', 2, 1),
+('R07201', 'Efrain', 'Rivas', 'efrain_rivas_99@gmail.com', '$2y$10$R1KQwoQ8Ph5dBxBPIf.gieWyEhcGTCTW8hrT/uGIggvfgufpYvOmq', 'M', 'ghgfhfghg', '2000-06-14', 1, 1),
+('S38265', 'Carlos', 'Sanchez', 'Carlos@gmail.com', '$2y$10$qR.8MOn.nELm5n3hd7hhj.W4qZuQiEvHtdpN1RrBTaKNrpYXV2VwC', 'M', 'San Salvador', '2000-07-11', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -159,7 +167,12 @@ CREATE TABLE `matricula` (
 
 INSERT INTO `matricula` (`id`, `fecha`, `id_estudiante`, `id_curso`) VALUES
 (2, '2021-04-20 01:39:27', 'AJ17941', 1),
-(23, '2021-04-21 04:04:21', 'DP12785', 3);
+(31, '2021-05-12 17:28:12', 'DP12785', 7),
+(32, '2021-05-12 17:28:13', 'DP12785', 6),
+(33, '2021-05-12 17:28:15', 'DP12785', 4),
+(34, '2021-05-12 17:28:17', 'DP12785', 3),
+(35, '2021-05-12 17:28:22', 'DP12785', 2),
+(36, '2021-05-12 17:51:40', 'S38265', 7);
 
 -- --------------------------------------------------------
 
@@ -180,7 +193,8 @@ CREATE TABLE `periodo` (
 INSERT INTO `periodo` (`id`, `fecha_inicio`, `fecha_finalizacion`) VALUES
 (1, '2021-04-20', '2021-04-30'),
 (2, '2020-11-19', '2021-04-19'),
-(3, '2021-04-01', '2021-04-19');
+(3, '2021-05-13', '2021-08-13'),
+(7, '2021-05-12', '2021-10-14');
 
 -- --------------------------------------------------------
 
@@ -271,19 +285,19 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `carreras`
 --
 ALTER TABLE `carreras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `facultad`
@@ -295,13 +309,13 @@ ALTER TABLE `facultad`
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `periodo`
 --
 ALTER TABLE `periodo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

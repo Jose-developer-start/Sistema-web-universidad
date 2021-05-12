@@ -96,8 +96,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-4">
 
-                                <a href="?option=edit_estudiante&id_estudiante=<?php echo $_SESSION['estudiante']['carnet']; ?>"><button class="btn btn-primary" name="enviar" <i class="fa fa-fw fa-lg fa-check-circle"></i>Editar</button></a>&nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-secondary" href="views/login_user.html"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                                <a href="?option=edit_estudiante&id_estudiante=<?php echo base64_encode($_SESSION['estudiante']['carnet']); ?>"><button class="btn btn-primary" name="enviar" <i class="fa fa-fw fa-lg fa-check-circle"></i>Editar</button></a>&nbsp;&nbsp;&nbsp;
                             </div>
                         </div>
                     </div>

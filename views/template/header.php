@@ -26,7 +26,9 @@
         <!-- User Menu-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
+          <?php if(isset($_SESSION['estudiante'])): ?>
             <li><a class="dropdown-item" href="?option=perfil"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
+          <?php endif; ?>
             <li><a class="dropdown-item" href="./views/"><i class="fa fa-sign-out fa-lg"></i> Salir</a></li>
           </ul>
         </li>
@@ -42,7 +44,15 @@
           <i class="fa fa-user-circle fa-3x mr-3"></i> 
         <?php endif; ?>
         <div>
-          <p class="app-sidebar__user-name">Nombre</p>
+          <p class="app-sidebar__user-name">
+          <?php if(isset($_SESSION['admin'])): ?>
+            <?php echo $_SESSION['admin']['nombres'] ?>
+          <?php elseif(isset($_SESSION['docente'])): ?>
+            <?php echo $_SESSION['docente']['nombres'] ?>
+          <?php else: ?>
+            <?php echo $_SESSION['estudiante']['nombres'] ?>
+          <?php endif; ?>
+          </p>
           <p class="app-sidebar__user-designation">
           <?php if(isset($_SESSION['admin'])): ?>
             Administrador
@@ -70,9 +80,9 @@
         <li><a class="app-menu__item active" href="?option=docente"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Docentes</span></a></li>
         <?php endif ?>
         <?php if(isset($_SESSION['estudiante'])): ?>
-        <li><a class="app-menu__item active" href="?option=matricula"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Matriculas</span></a></li>
+        <li><a class="app-menu__item active" href="?option=matricula"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Matriculas</span></a></li>
       
-        <li><a class="app-menu__item active" href="?option=inscribirse"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Cursos</span></a></li>
+        <li><a class="app-menu__item active" href="?option=inscribirse"><i class="app-menu__icon fa fa-codepen"></i><span class="app-menu__label">Cursos</span></a></li>
         <?php endif; ?>
       </ul>
     </aside>

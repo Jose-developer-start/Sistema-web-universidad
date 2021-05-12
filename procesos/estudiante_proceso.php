@@ -10,7 +10,7 @@
     }
     */
     if(isset($_POST['update_estudiante'])){
-        $id_estudiante = $_POST['id'];
+        $id_estudiante = base64_decode($_POST['id']);
         $nombres = $_POST['nombres'];
         $apellidos = $_POST['apellidos'];
         $email = $_POST['email'];

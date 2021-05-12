@@ -21,18 +21,25 @@
         $query = "SELECT * FROM matricula WHERE id_curso ='$id_curso' AND id_estudiante='$id_estudiante'";
         $result_Verify = select_data($query);
         if(empty($result_Verify)){
-            $query = "INSERT INTO matricula(fecha,id_estudiante,id_curso) VALUES(NULL,'$id_estudiante','$id_curso')";
-            $result = I_U_D_data($query);
+            //Consulta para verificar el nº de inscripcion a 5 cursos maximo
+            $query_verify = "SELECT COUNT(id_estudiante) as matricula FROM `matricula` WHERE id_estudiante='$id_estudiante'";
+            $result_count_estu = get_data($query_verify,"where");
+            if($result_count_estu['matricula'] < 5){
+                $query = "INSERT INTO matricula(fecha,id_estudiante,id_curso) VALUES(NULL,'$id_estudiante','$id_curso')";
+                $result = I_U_D_data($query);
 
-            if($result){
-                header('Location:../?option=inscribirse&pag=1&error='.base64_encode('Inscrito'));
+                if($result){
+                    header('Location:../?option=inscribirse&pag=1&error='.base64_encode('Inscrito'));
+                    return false;
+                }
+            }else{
+                header('Location:../?option=inscribirse&pag=1&error='.base64_encode('Inscripciones Superadas'));
                 return false;
             }
         }else{
             header('Location:../?option=inscribirse&pag=1&error='.base64_encode('Ya estas inscrito'));
             return false;
         }
-        
     }
 
     //Agregar un curso a la base de datos, desde la vista de curse.php

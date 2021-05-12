@@ -1,5 +1,5 @@
 <?php include_once "./procesos/general_crud.php";
-$id_estudiante = $_GET['id_estudiante'];
+$id_estudiante = base64_decode($_GET['id_estudiante']);
 $query = "SELECT * FROM estudiante WHERE carnet='$id_estudiante'";
 $data = get_data($query, "where");
 ?>
@@ -7,12 +7,12 @@ $data = get_data($query, "where");
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
-            <p>A free and open source Bootstrap 4 admin template</p>
+            <h1><i class="fa fa-dashboard"></i> Mi perfil</h1>
+            <p>Actualiza tú perfil</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="#">Mi perfil</a></li>
         </ul>
     </div>
     <div class="row">
@@ -21,7 +21,7 @@ $data = get_data($query, "where");
                 <div class="tile-body">
                     <h3 class="tile-title">Actualizar Informacion Personal</h3>
                     <form class="form-horizontal" method="POST" action="./procesos/estudiante_proceso.php">
-                        <input type="hidden" name="id" value="<?php echo $data['carnet'] ?>">
+                        <input type="hidden" name="id" value="<?php echo base64_encode($data['carnet']) ?>">
                         <div class="form-group row">
                             <label class="control-label col-md-3">Nombres</label>
                             <div class="col-md-9">
@@ -54,16 +54,16 @@ $data = get_data($query, "where");
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Fecha de nacimiento*</label>
+                            <!--<label class="control-label col-md-3">Fecha de nacimiento*</label>-->
                             <div class="col-md-9">
-                                <input name="date_nacimiento" class="form-control" type="date" placeholder="Ingresar " value="<?php echo $data['fecha_nacimiento'] ?>" required>
+                                <input name="date_nacimiento" class="form-control" type="hidden" placeholder="Ingresar " value="<?php echo $data['fecha_nacimiento'] ?>" required>
                             </div>
                         </div>
                         <div class="tile-footer">
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button class="btn btn-primary" name="update_estudiante" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>&nbsp;&nbsp;&nbsp;
-                                    <a class="btn btn-secondary" href="./views/?option=perfil"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                                    <a class="btn btn-secondary" href="./?option=perfil"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                                 </div>
                             </div>
                         </div>

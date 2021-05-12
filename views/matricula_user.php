@@ -42,7 +42,7 @@
                         <td><?php echo $cont += 1 ?></td>
                         <td><?php echo $result['nombre'] ?></td>
                         <td><?php echo $result['fecha'] ?></td>
-                        <td><?php echo $result['nombres'] ?></td>
+                        <td><?php echo $result['nombres']." ".$result['apellidos'] ?></td>
                         <td>
                             <a class="btn btn-danger" href="./procesos/curso-procesos.php?id_curso=<?php echo $result['id'] ?>">Eliminar</a>
                         </td>
