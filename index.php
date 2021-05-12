@@ -47,6 +47,10 @@
         //Edit curso
         include_once "./views/edit_curso.php";
 
+    }elseif($option == 'edit_estudiante'){
+        //Edit estudiante
+        include_once "./views/edit_estudiante.php";
+
     }else{
         include_once "views/dashboard.php";
     }
