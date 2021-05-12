@@ -18,8 +18,7 @@
     }
     //Consulta sql para buscar el registro en la BD
     $result = get_data($query,'where');
-
-    if($result['carnet'] === $carnet OR $result['email'] === $carnet){
+    if($result['carnet'] == $carnet || $result['email'] == $carnet){
         if($rol == 1){
             if(password_verify($clave,$result['clave'])){
                 //Creamos la sesion de estudiante

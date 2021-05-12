@@ -103,17 +103,27 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <?php foreach($result_cursos_carrera as $result):?>
+                      <?php if($_SESSION['docente']['id'] == $result['id_docente']): ?>
                       <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Licencitura en ciencias de la computacion</td>
+                        <td><?php echo $result['id'] ?></td>
+                        <td><?php echo $result['cursos'] ?></td>
+                        <td><?php echo $result['cupos'] ?></td>
                         <td>
-                            <a class="btn btn-info" href="#">Actualizar</a>
-                            <a class="btn btn-danger" href="#">Eliminar</a>
+                          <?php if($result['estado'] == 1): ?>
+                            Activo
+                          <?php else: ?>
+                            Desactivado
+                          <?php endif; ?>
+                        </td> 
+                        <td><?php echo $result['carreras'] ?></td>
+                        <td>
+                            <a class="btn btn-info" href="?option=edit_curso&id_curso=<?php echo $result['id']?>">Actualizar</a>
+                            <a class="btn btn-danger" href="./procesos/curso-procesos.php?del_cursos=1&id_curso=<?php echo $result['id']?>">Eliminar</a>
                         </td>
                       </tr>
+                      <?php endif ?>
+                    <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div>

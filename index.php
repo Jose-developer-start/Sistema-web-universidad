@@ -35,6 +35,18 @@
         //Edit docente
         include_once "./views/edit_docente.php";
 
+    }elseif($option == 'edit_carrera'){
+        //Edit carrera
+        include_once "./views/edit_carrera.php";
+
+    }elseif($option == 'edit_periodo'){
+        //Edit periodo
+        include_once "./views/edit_periodo.php";
+
+    }elseif($option == 'edit_curso'){
+        //Edit curso
+        include_once "./views/edit_curso.php";
+
     }else{
         include_once "views/dashboard.php";
     }

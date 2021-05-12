@@ -1,4 +1,9 @@
-<?php include_once "./procesos/mostrar-datos.php"; ?>
+<?php include_once "./procesos/general_crud.php";
+    $id = $_GET['id'];
+    $query = "SELECT * FROM docente WHERE id=$id";
+    $data = get_data($query,"where");
+?>
+
 <main class="app-content">
     <div class="app-title">
         <div>
@@ -20,7 +25,7 @@
                         <div class="form-group">
                             <label class="control-label">Estado</label>
                             <select class="form-control" id="exampleSelect1" name="estado" required>
-                                <option value="" selected disabled>Seleccionar estado</option>
+                                <option value="<?php echo $data['estado'] ?>" selected><?php if($data['estado'] == 1){ echo "Activo";} ?></option>
                                 <option value="1">Activo</option>
                                 <option value="0">Desactivar</option>
                             </select>
@@ -28,13 +33,13 @@
                         <div class="form-group">
                             <label class="control-label">Rol Sistema</label>
                             <select class="form-control" id="exampleSelect1" name="rol" required>
-                                <option value="" selected disabled>Seleccionar rol</option>
+                            <option value="<?php echo $data['id_rol'] ?>" selected><?php if($data['id_rol'] == 2){ echo "Profesor";}elseif($data['id_rol'] == 3){ echo "Administrador";} ?></option>
                                 <option value="2">Profesor</option>
                                 <option value="3">Administrador</option>
                             </select>
                         </div>
                         <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit" name="update_docente"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                            <button class="btn btn-primary" type="submit" name="update_docente"><i class="fa fa-fw fa-lg fa-check-circle"></i>Actualizar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="?option=docente"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                         </div>
                     </form>
                 </div>

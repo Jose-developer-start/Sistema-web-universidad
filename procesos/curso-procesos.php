@@ -37,13 +37,13 @@
 
     //Agregar un curso a la base de datos, desde la vista de curse.php
     if(isset($_POST['agregar-curse'])){
-        echo $nombre_curso = $_POST['nombre_curso'];
-        echo $descripcion = $_POST['descripcion'];
-        echo $numero_cupos = $_POST['numero_cupos'];
-        echo $estado = $_POST['estado'];
-        echo $fecha = $_POST['fecha'];
-        echo $carrera = $_POST['carrera'];
-        echo $docente = $_POST['docente'];
+        $nombre_curso = $_POST['nombre_curso'];
+        $descripcion = $_POST['descripcion'];
+        $numero_cupos = $_POST['numero_cupos'];
+        $estado = $_POST['estado'];
+        $fecha = $_POST['fecha'];
+        $carrera = $_POST['carrera'];
+        $docente = $_POST['docente'];
 
         $tabla = 'cursos(nombre,descripcion,cupos,estado,id_periodo,id_carrera,id_docente)';
         $valores = "'$nombre_curso','$descripcion','$numero_cupos','$estado','$fecha','$carrera','$docente'";
@@ -69,13 +69,77 @@
         }
     }
     //Eliminar matricula
-    $id_curso = $_GET['id_curso'];
-    if(isset($id_curso)){
+    
+    if(isset($_GET['id_curso'])){
+        $id_curso = $_GET['id_curso'];
         $query = "DELETE FROM matricula WHERE id='$id_curso'";
         $result = I_U_D_data($query);
         if($result){
             header('Location:../?option=matricula&error='.base64_encode('Eliminado'));
         }
     }
-    
+    //Eliminar periodo
+    if(isset($_GET['id_periodo'])){
+        $id_periodo = $_GET['id_periodo'];
+        $query = "DELETE FROM periodo WHERE id='$id_periodo'";
+        $result = I_U_D_data($query);
+        if($result){
+            header('Location:../?option=periodos&mensaje='.base64_encode('Eliminado'));
+        }
+    }
+    //Actualizar periodo
+    if(isset($_POST['update_periodo'])){
+        $id_periodo = $_POST['id_periodo'];
+        $date_i = $_POST['fecha_i'];
+        $date_f = $_POST['fecha_f'];
+        $query = "UPDATE periodo SET fecha_inicio='$date_i',fecha_finalizacion='$date_f' WHERE id=$id_periodo";
+        $result = I_U_D_data($query);
+
+        if($result){
+            header('Location:../?option=periodos');
+        }
+    }
+    //Eliminar un curso
+    if(isset($_GET['del_cursos'])){
+        $id_curso = $_GET['id_curso'];
+        $query = "DELETE FROM cursos WHERE id='$id_curso'";
+        $result = I_U_D_data($query);
+        if($result){
+            header('Location:../?option=cursos&mensaje='.base64_encode('Eliminado'));
+        }
+    }
+    //Actualizar curso
+    if(isset($_POST['update_curso'])){
+        $id_curso = $_POST['id_curso'];
+        $nombre_curso = $_POST['nombre_curso'];
+        $descripcion = $_POST['descripcion'];
+        $numero_cupos = $_POST['numero_cupos'];
+        $estado = $_POST['estado'];
+        /*
+        $fecha = $_POST['fecha'];
+        $carrera = $_POST['carrera'];
+        $docente = $_POST['docente'];
+        */
+        $where = "WHERE id=$id_curso";
+        //Consulta
+        $query= "UPDATE cursos SET nombre='$nombre_curso',descripcion='$descripcion',cupos='$numero_cupos',estado='$estado' $where";
+        //Utilizamos la funcion de insertar (Multiproposito)
+        $response = I_U_D_data($query);
+        if($response){
+            echo "
+                <script>
+                        alert('Actualizado');
+                        location.href = '../?option=cursos';
+                </script>
+            ";
+            return false;
+        }else{
+            echo "
+                <script>
+                        alert('Error al Actualizar');
+                        location.href = '../?option=cursos';
+                </script>
+            ";
+        }
+    }
 ?>

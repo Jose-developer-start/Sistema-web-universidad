@@ -7,7 +7,7 @@
     <meta property="og:site_name" content="Panel administrativo">
     <meta property="og:title" content="Desarrollado en BS 4">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
-    <title>Admin de Universidad</title>
+    <title>Gestion | Universidad</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,10 +35,23 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="Imagen">
+      <div class="app-sidebar__user">
+        <?php if(!isset($_SESSION['estudiante'])): ?>
+        <img class="app-sidebar__user-avatar" width="20px" src="./public/img/fotos_docentes/<?php if(isset($_SESSION['admin'])){echo $_SESSION['admin']['foto'];}elseif(isset($_SESSION['docente'])){echo $_SESSION['docente']['foto'];} ?>">
+        <?php else: ?>
+          <i class="fa fa-user-circle fa-3x mr-3"></i> 
+        <?php endif; ?>
         <div>
           <p class="app-sidebar__user-name">Nombre</p>
-          <p class="app-sidebar__user-designation">Estudiante</p>
+          <p class="app-sidebar__user-designation">
+          <?php if(isset($_SESSION['admin'])): ?>
+            Administrador
+          <?php elseif(isset($_SESSION['docente'])): ?>
+            Profesor
+          <?php else: ?>
+            Estudiante
+          <?php endif; ?>
+          </p>
         </div>
       </div>
       <ul class="app-menu">
@@ -53,7 +66,7 @@
         <li><a class="app-menu__item active" href="?option=cursos"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Cursos</span></a></li>
         <?php endif ?>
         <?php if(isset($_SESSION['admin'])):?>
-        <li><a class="app-menu__item active" href="?option=periodos"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Periodos</span></a></li>
+        <li><a class="app-menu__item active" href="?option=periodos"><i class="app-menu__icon fa fa-calendar"></i><span class="app-menu__label">Periodos</span></a></li>
         <li><a class="app-menu__item active" href="?option=docente"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Docentes</span></a></li>
         <?php endif ?>
         <?php if(isset($_SESSION['estudiante'])): ?>

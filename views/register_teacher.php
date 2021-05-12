@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +37,9 @@
         <div class="logo">
             <h1>Vali</h1>
         </div>
+        <?php if(isset($_SESSION['admin'])): ?>
+            <a class="btn btn-success my-3" href="?option=docente"> <i class="fa fa-angle-left fa-3x"></i> Regresar</a>
+        <?php endif; ?>
         <div class="tile">
             <h3 class="tile-title">Registrate en nuestra plataforma</h3>
             <div class="tile-body">
